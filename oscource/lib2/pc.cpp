@@ -60,7 +60,7 @@ void consumer(const std::string& textfile) {
 // 主函数
 int main() {
     std::thread prod(producer, "keywords.txt"); // 创建生产者线程
-    std::thread cons(consumer, "textfile.txt"); // 创建消费者线程
+    std::thread cons(consumer, "Bible.txt"); // 创建消费者线程
 
     prod.join(); // 等待生产者线程结束
     cons.join(); // 等待消费者线程结束
