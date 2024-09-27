@@ -7,12 +7,11 @@
 #include <queue>
 #include <algorithm>
 
-// 定义全局变量和同步工具
-std::mutex mtx; // 互斥量，用于同步访问
-std::condition_variable cv; // 条件变量，用于线程间的通知
-std::queue<std::string> buffer; // 用于存储关键词的缓冲区
-const int BUFFER_SIZE = 10; // 缓冲区的最大容量
-bool finished = false; // 表示生产者是否完成了关键词的读取
+std::mutex mtx; 
+std::condition_variable cv; 
+std::queue<std::string> buffer; 
+const int BUFFER_SIZE = 10; 
+bool finished = false; 
 
 // 生产者函数
 void producer(const std::string& filename) {
@@ -57,13 +56,12 @@ void consumer(const std::string& textfile) {
     }
 }
 
-// 主函数
 int main() {
     std::thread prod(producer, "keywords.txt"); // 创建生产者线程
     std::thread cons(consumer, "Bible.txt"); // 创建消费者线程
 
-    prod.join(); // 等待生产者线程结束
-    cons.join(); // 等待消费者线程结束
+    prod.join(); 
+    cons.join(); 
 
     return 0;
 }
